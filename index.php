@@ -1,7 +1,7 @@
 <?php
 /**
  *------------------------------------------------------
- * 3rood - coupons offer.
+ * qatan - php ecommerce web application.
  *
  * @author Soliman Adel (Mr-simple)
  * @email {soliman.adelzx@gmail.com}
