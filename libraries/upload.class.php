@@ -141,6 +141,7 @@ class upload
                             $name
                         );
                         $this->set_error($error);
+                        return false;
                     }
 
                     // IF file size bigger than default configuration.
@@ -151,6 +152,7 @@ class upload
                             $this->formatSize($this->options["max_file_size"])
                         );
                         $this->set_error($error);
+                        return false;
                     }
 
                     if( is_uploaded_file($tmp_name) ) {
@@ -170,6 +172,7 @@ class upload
 
                 } else {
                     $this->set_error($error);
+                    return false;
                 }
 
             }
@@ -197,6 +200,7 @@ class upload
                     $name
                 );
                 $this->set_error($error);
+                return false;
             }
 
             // IF the file size bigger than the default configuration.
@@ -206,6 +210,7 @@ class upload
                     $this->formatSize($this->options["max_file_size"])
                 );
                 $this->set_error($error);
+                return false;
             }
 
             // IF everything is ok.
@@ -227,6 +232,7 @@ class upload
 
             } else {
                 $this->set_error($error);
+                return false;
             }
         }
 
