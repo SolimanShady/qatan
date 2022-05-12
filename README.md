@@ -9,6 +9,6 @@ Easy php web application to start your ecommerce website using minimum requireme
 <br>
 2- Change the application url located in {includes/config.php} folder.
 <br>
-3- Import the database located in {db} folder using phpymyadmin.
+3- Import the database backup file located in {db} folder using phpymyadmin.
 
 That's it , Have a nice time :)
