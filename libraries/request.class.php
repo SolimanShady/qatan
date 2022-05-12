@@ -12,63 +12,97 @@
 
 class request
 {
-    function __construct()
-    {
+    function __construct(){}
 
-    }
 
+    /**
+     * post
+     * return data from post global array.
+     *
+     * @param   String  $data
+     * @return  String
+     */
     function post($data = false)
     {
         if(empty($data)) return $_POST;
-
-        foreach($_POST[$data] AS $key=>$val)
-        {
-            $_POST[$data][$key] = trim($val);
-            $_POST[$data][$key] = strip_tags($val);
-            $_POST[$data][$key] = htmlspecialchars($val);
-        }
-
+        $data = self::secure($data);
         return $_POST[$data];
     }
 
+    /**
+     * get
+     * return data from get global array
+     *
+     * @param   String  $data
+     * @return  String
+     */
     function get($data = false)
     {
         if(empty($data)) return $_GET;
-        foreach($_GET[$data] AS $key=>$val)
-        {
-            $_GET[$data][$key] = trim($val);
-            $_GET[$data][$key] = strip_tags($val);
-            $_GET[$data][$key] = htmlspecialchars($val);
-        }
+        $data = self::secure($data);
         return $_GET[$data];
     }
 
-
-    function server($key = false)
+    /**
+     * getHeader
+     * Return the value of the give header name.
+     *
+     * @param   null  $key
+     * @return  String
+     */
+    function getHost()
     {
-        return (
-            !empty($key)
-        ) ? $_SERVER[$key] : $_SERVER;
+        return $_SERVER['SERVER_NAME'];
     }
 
-    function file($key = false)
+    /**
+     * getHeader
+     * Return the value of the give header name.
+     *
+     * @param   String  $key
+     * @return  String
+     */
+    public function getHeader($key = false)
     {
         return (
             !empty($key)
             &&
-            in_array($key, $_FILES)
-        ) ? $_FILES[$key] : $_FILES;
+            array_key_exists($key, $_SERVER)
+        ) ? $_SERVER[$key] : "";
     }
 
+    /**
+     * hasHeader
+     * Checks if the given header exists or not in $_SERVER array.
+     *
+     * @param   String  $key
+     * @return  String
+     */
+    public function hasHeader($key = false)
+    {
+        return (
+            !empty($key)
+            &&
+            array_key_exists($key, $_SERVER)
+        );
+    }
+
+    /**
+     * hasFile
+     * Check if the current request has a file sent with it.
+     *
+     * @param String
+     * @return Boolean
+     *
+     */
     function hasFile($key = false)
     {
         return (
             !empty($_FILES[$key]["tmp_name"])
             &&
             $_FILES[$key]["size"] > 0
-        ) ? true : false;
+        );
     }
-
 
     /**
      * isMethod
@@ -76,12 +110,11 @@ class request
      *
      * @param String
      * @return Boolean
+     *
      */
     function isMethod($method = false)
     {
-        return (
-            $method == $_SERVER["REQUEST_METHOD"]
-        ) ? true : false;
+        return ($method == $_SERVER["REQUEST_METHOD"]);
     }
 
     /**
@@ -90,12 +123,11 @@ class request
      *
      * @param NULL
      * @return Boolean
+     *
      */
     function isPost()
     {
-        return (
-            'POST' == $_SERVER['REQUEST_METHOD']
-        ) ? true : false;
+        return ('POST' == $_SERVER["REQUEST_METHOD"]);
     }
 
     /**
@@ -104,12 +136,11 @@ class request
      *
      * @param NULL
      * @return Boolean
+     *
      */
     function isGet()
     {
-        return(
-            'GET' == $_SERVER["REQUEST_METHOD"]
-        ) ? true : false;
+        return ('GET' == $_SERVER["REQUEST_METHOD"]);
     }
 
     /**
@@ -118,12 +149,43 @@ class request
      *
      * @param NULL
      * @return Boolean
+     *
      */
     function isAjax()
     {
         return(
-            'XMLHttpRequest' == $_SERVER['HTTP_X_REQUESTED_WITH']
-        ) ? true : false;
+            isset($_SERVER["HTTP_X_REQUESTED_WITH"])
+            &&
+            'XMLHttpRequest' == ($_SERVER['HTTP_X_REQUESTED_WITH'])
+        );
+    }
+
+    /**
+     * isXhr
+     * Alias of isAjax method.
+     * Checks whether request has been made using AJAX.
+     *
+     * @param NULL
+     * @return Boolean
+     *
+     */
+    function isXhr()
+    {
+        return(
+            isset($_SERVER["HTTP_X_REQUESTED_WITH"])
+            &&
+            'XMLHttpRequest' == ($_SERVER['HTTP_X_REQUESTED_WITH'])
+        );
+    }
+
+    private function secure($data)
+    {
+        $data = trim($data);
+        $data = strtolower($data);
+        $data = strip_tags($data);
+        $data = htmlspecialchars($data);
+
+        return $data;
     }
 }
 ?>
