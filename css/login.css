@@ -1,0 +1,84 @@
+*,*::after,*::before{
+    outline: none;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+body{
+    min-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma;
+    font-weight: normal;
+    font-size: 90%;
+    color: #333;
+    background-image: linear-gradient(to left, #ccc, #eee);
+}
+a{
+    color: inherit;
+    text-decoration: underline;
+}
+a:hover{
+}
+
+ul,ol,li{
+    list-style: none;
+}
+
+/**
+ *-----------------------------------------------
+ * LOGIN START
+ *-----------------------------------------------
+ */
+
+.login{
+    position: absolute;
+    width: 100%;
+    max-width: 400px;
+    height: inherit;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #4080FF;
+    box-shadow: 0 6px 10px rgba(0,0,0,.12);
+}
+.errors{
+    background: #e35256;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.btn{
+    width: 100%;
+    height: 35px;
+    border: 0px;
+    border-radius: .25rem;
+    color: #333;
+    cursor: pointer;
+}
+.btn-submit{
+    color: #fff;
+    font-weight: bold;
+    background: #3366CC;
+}
+.btn-submit:hover{
+    background: #4080FF;
+}
+.field {
+    width: 100%;
+    height: 35px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 1px solid #CCC;
+    border-radius: .25rem;
+    color: #4a5568;
+    background: rgba(243,244,246,1) !important;
+    box-shadow: 0 2px 4px rgba(50,50,93,.11);
+}

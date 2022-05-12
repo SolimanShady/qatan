@@ -1,0 +1,40 @@
+Options -MultiViews
+Options -Indexes
+
+ServerSignature Off
+
+AddDefaultCharset utf-8
+
+#DOS protection
+LimitRequestBody 10000000
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+RewriteEngine On
+
+RewriteRule ^sitemap\.xml$ sitemap.php [NC,L]
+RewriteRule ^sitemap\.pages\.xml$ sitemap-pages.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [NC,QSA,L]
+
+
+#Session protection
+php_value session.save_path "sessions"
+php_value session.has_function 1
+
+#Short open tags enable
+php_value short_open_tag 1
+
+#Upload settings
+php_value post_max_size 100M
+php_value upload_max_filesize 100M
+
+php_value max_input_time 18000
+php_value max_execution_time 18000
