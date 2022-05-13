@@ -2,7 +2,7 @@
 class application
 {
     const DEFAULT_CONTROLLER = "home";
-    const ERROR_CONTROLLER = 'error';
+    const ERROR_CONTROLLER = '_error';
     const DEFAULT_METHOD = "index";
 
     private function __clone(){}
