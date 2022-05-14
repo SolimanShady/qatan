@@ -35,6 +35,7 @@
                     <input type="text" class="field"
                             id="username"
                             name="username"
+                            value="admin"
                             pattern="^[^ ].+[^ ]$"
                             placeholder="<?php echo $lang->username;?> *"
                             required>
@@ -44,6 +45,7 @@
                     <input type="password" class="field"
                             id="password"
                             name="password"
+                            value="123"
                             pattern="^[^ ].+[^ ]$"
                             placeholder="<?php echo $lang->password;?> *"
                             required>
