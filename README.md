@@ -2,7 +2,7 @@
 php E-commerce single vendor web application
 
 # What is qatan ?
-Easy php web application to start your ecommerce website using minimum requirements, it built using my own custom MVC framewrok.
+Easy php web application to start your ecommerce website using minimum requirements, it was built using my own custom MVC framewrok.
 
 # How to use ?
 1- Change the database configuration file located in {config/database.php} folder.
